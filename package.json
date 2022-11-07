@@ -1,0 +1,34 @@
+{
+  "name": "0xccy",
+  "version": "1.0.0",
+  "description": "This is the homepage of 0xCCY.",
+  "main": "index.js",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/0xCCY/0xCCY.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/0xCCY/0xCCY/issues"
+  },
+  "homepage": "https://github.com/0xCCY/0xCCY#readme",
+  "dependencies": {
+    "astro": "^1.6.3"
+  },
+  "devDependencies": {
+    "cz-conventional-changelog": "^3.3.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
+}
