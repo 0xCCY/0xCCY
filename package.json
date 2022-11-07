@@ -21,7 +21,9 @@
   },
   "homepage": "https://github.com/0xCCY/0xCCY#readme",
   "dependencies": {
-    "astro": "^1.6.3"
+    "@astrojs/tailwind": "^2.1.2",
+    "astro": "^1.6.3",
+    "tailwindcss": "^3.2.2"
   },
   "devDependencies": {
     "cz-conventional-changelog": "^3.3.0"
