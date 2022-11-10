@@ -1,0 +1,17 @@
+---
+import Meta from '../components/Meta.astro';
+import NavBar from '../components/NavBar.astro';
+import '../styles/base.css';
+---
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <Meta />
+  </head>
+  <body
+    class='antialiased text-white bg-bgBlack items-center top-0 mx-auto max-w-[1344px]'>
+    <NavBar />
+    <slot />
+  </body>
+</html>

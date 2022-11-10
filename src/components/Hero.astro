@@ -1,0 +1,170 @@
+---
+---
+
+<div
+  class='pt-5 flex min-h-[2rem] font-dosis md:flex-row flex-col-reverse grid-cols-2 relative md:overflow-hidden overflow-scroll pb-20'>
+  <div class='flex flex-1 relative'>
+    <div class='flex-1 grid aspect-square z-20' id='box'> </div>
+    <div class='flex w-full absolute top-0 left-0 z-10'>
+      <div class='flex-1 grid aspect-square' id='box2'> </div>
+    </div>
+  </div>
+  <div class='m-8'></div>
+  <div
+    class='flex-1 flex justify-center items-center flex-col border-2 border-white aspect-square md:text-left text-center'>
+    <div
+      class='md:py-0 py-12 md:mx-10 sm:mx-10 mx-0 md:text-xl sm:text-xl text-base'>
+      <h1 class='font-bold'>Welcome to 0xCCY</h1>
+      <h1 class='pt-4 font-bold'>
+        This is where I share my
+        <a href='/0x100' class='font-bold text-purple-600'>
+          <span class='hover:underline'>0x100</span>
+        </a>journey where I'm building 100 projects with no limits!
+      </h1>
+      <div class='md:text-xl sm:text-lg text-sm pt-4 text-slate-100'>
+        <h2>
+          If you're new, you might want to
+          <a href='/0x100' class='font-bold text-purple-600'>
+            <span class='hover:underline'>start here.</span>
+          </a>
+        </h2>
+        <h2>
+          Check out what I'm up to
+          <a href='/0x100' class='font-bold text-purple-600'>
+            <span class='hover:underline'>recently!</span>
+          </a>
+        </h2>
+      </div>
+    </div>
+  </div>
+
+  <script
+    is:inline
+    src='https://cdn.jsdelivr.net/npm/animejs@3.0.1/lib/anime.min.js'
+  ></script>
+
+  <script is:inline>
+    const box = document.querySelector('#box');
+    const box2 = document.querySelector('#box2');
+
+    columns = 0;
+    rows = 0;
+
+    const createGrid = (index) => {
+      const grid = document.createElement('div');
+      grid.classList.add('border', 'border-white', 'bg-bgBlack');
+      grid.id = 'grid';
+      return grid;
+    };
+
+    const createGrid2 = (index) => {
+      const grid = document.createElement('div');
+      grid.classList.add('border', 'border-white', 'bg-bgPurple');
+      grid.id = 'grid';
+      return grid;
+    };
+
+    const createGrids = (quantity) => {
+      Array.from(Array(quantity)).map((grid, index) => {
+        box.appendChild(createGrid(index));
+        box2.appendChild(createGrid2(index));
+      });
+    };
+
+    const createGrids2 = (element, quantity) => {
+      Array.from(Array(quantity)).map((grid, index) => {
+        element.appendChild(createGrid(index));
+      });
+    };
+
+    const createMap = () => {
+      box.innerHTML = '';
+      box2.innerHTML = '';
+
+      const size = box.clientWidth > 1000 ? 100 : 75;
+
+      if (document.body.clientWidth >= 768) {
+        rows = Math.floor((document.body.clientWidth / size) * 0.55);
+        columns = Math.floor(document.body.clientHeight / size);
+      } else {
+        rows = Math.floor(document.body.clientWidth / size);
+        columns = Math.floor((document.body.clientHeight / size) * 0.55);
+      }
+
+      box.style.gridTemplateRows = `repeat(${rows},minmax(0,1fr))`;
+      box.style.gridTemplateColumns = `repeat(${columns},minmax(0,1fr))`;
+
+      box2.style.gridTemplateRows = `repeat(${rows},minmax(0,1fr))`;
+      box2.style.gridTemplateColumns = `repeat(${columns},minmax(0,1fr))`;
+
+      createGrids(rows * columns);
+
+      const logo = document.createElement('img');
+      logo.src = '/logo.png';
+      logo.classList.add(
+        'absolute',
+        'z-2',
+        'w-1/2',
+        'h-1/2',
+        'aspect-square',
+        'translate-x-1/2',
+        'translate-y-1/2'
+      );
+      box.appendChild(logo);
+
+      anime({
+        targets: '#box>#grid',
+
+        scale: [
+          { value: [1, 0.75], easing: 'easeOutSine', duration: 600 },
+          { value: [0.75, 1], easing: 'easeInOutQuad', duration: 600 },
+        ],
+        outlineColor: [
+          {
+            value: ['#fff', 'rgba(11,72,248,0.6)'],
+            easing: 'easeOutSine',
+            duration: 140,
+          },
+          {
+            value: ['rgba(124,77,124,0.8)', 'rgba(77,0,248,0.8)'],
+            easing: 'easeInOutQuad',
+            duration: 140,
+          },
+          {
+            value: ['rgba(77,0,248,0.8)', 'rgba(111,33,248,0.8)'],
+            easing: 'easeInOutSine',
+            duration: 140,
+          },
+          {
+            value: ['rgba(111,33,248,0.8)', '#fff'],
+            easing: 'easeInOutQuad',
+            duration: 140,
+          },
+        ],
+        delay: anime.stagger(333, {
+          grid: [columns, rows],
+          from: '0',
+        }),
+        direction: 'alternate',
+        endDelay: 3000,
+        loop: true,
+      });
+
+      // anime({
+      //   targets: '#box>img',
+
+      //   keyframes: [
+      //     { rotate: 10, delay: anime.stagger(100) },
+      //     { rotate: 10, direction: 'reverse' },
+      //   ],
+      //   duration: 4000,
+      //   easing: 'easeOutElastic(5,1)',
+      //   direction: 'alternate',
+      //   loop: true,
+      // });
+    };
+    createMap();
+
+    window.onresize = () => createMap();
+  </script>
+</div>

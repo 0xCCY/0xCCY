@@ -1,0 +1,24 @@
+---
+const { frontmatter: post } = Astro.props.post;
+---
+
+<div class='flex mt-10 flex-row font-dosis'>
+  <div class='border-2 p-12 text-center'>
+    <div class='text-2xl'>
+      {
+        `${new Date(post.date).toLocaleString('default', {
+          month: 'short',
+        })} ${new Date(post.date).getFullYear()}`
+      }
+    </div>
+    <div class='text-6xl font-bold'>{new Date(post.date).getDate()}</div>
+  </div>
+  <div class='flex-1 p-12 border-y-2 border-r-2'>
+    <h1 class='text-6xl'>
+      {post.title}
+    </h1>
+    <h2 class='text-4xl text-slate-400'>
+      {post.summary}
+    </h2>
+  </div>
+</div>

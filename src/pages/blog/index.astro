@@ -1,0 +1,10 @@
+---
+import PostPreviewList from '../../components/PostPreviewList.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const posts = await Astro.glob('../blog/*.md');
+---
+
+<BaseLayout>
+  <PostPreviewList posts={posts} />
+</BaseLayout>
